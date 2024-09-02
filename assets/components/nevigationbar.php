@@ -93,7 +93,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <span class="icon">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         </span>

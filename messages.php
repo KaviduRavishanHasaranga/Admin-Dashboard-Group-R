@@ -5,7 +5,7 @@ include 'customer_messages.php';
 ?>
 
 
-<div class="messagetable-conatiner">
+<div class="form-container">
     <h2>Customer's Messages</h2><br>
     <table>
         <tr>

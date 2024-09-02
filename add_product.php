@@ -22,15 +22,29 @@ include 'assets\components\mainside.php';
 
             <label for="category">Category:</label>
             <select id="category" name="category">
-                <option value="gemstones">Gemstones</option>
-                <option value="fashion">Fashion</option>
-                <option value="jewelry">Jewelry</option>
+                <option value="Blue-sapphire">Blue Sapphire</option>
+                <option value="Ruby">Ruby</option>
+                <option value="Yellow-sapphire">Yellow Sapphire</option>
+                <option value="Pink-sapphire">Pink Sapphire</option>
+                <option value="White-sapphire">White Sapphire</option>
+                <option value="Padparadscha">Padparadscha</option>
+                <option value="Star-sapphire">Star Sapphire</option>
+                <option value="Purple-sapphire">Purple Sapphire</option>
+                <option value="Garnet">Garnet</option>
+                <option value="Tourmaline">Tourmaline</option>
+                <option value="Chrysoberyl">Chrysoberyl</option>
+                <option value="Aquamarine">Aquamarine</option>
+                <option value="Topaz">Topaz</option>
+                <option value="Spinel">Spinel</option>
+                <option value="Amethyst">Amethyst</option>
+                <option value="Moonstone">Moonstone</option>
             </select>
 
             <label for="product_image">Product Images:</label>
-            <input type="file" id="product_image" name="image_url" multiple>
             <input type="file" id="product_image" name="product_image[]" multiple>
             <input type="file" id="product_image" name="product_image[]" multiple>
+            <input type="file" id="product_image" name="product_image[]" multiple>
+
         </section>
 
         <!-- Product Specification -->
@@ -78,7 +92,7 @@ include 'assets\components\mainside.php';
 
         <div class="form-actions">
             <button type="submit">Submit</button>
-            <button type="reset">Save Draft</button>
+            <button type="reset">Reset</button>
         </div>
     </form>
 </div>
