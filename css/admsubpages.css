@@ -195,3 +195,46 @@ th, td {
 }
 
 /* Product Table */
+
+/* blog_event */
+h2{
+  margin-bottom: 20px;
+}
+
+.blog-form {
+  background: rgb(209, 209, 209);
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+    color: white;
+    border-color: white;
+}
+
+
+
