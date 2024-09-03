@@ -63,7 +63,7 @@ include 'assets\components\footer.php';
         }
 
         $stmt = $conn->prepare("INSERT INTO events(event_title, event_images, event_content) VALUES(?,?,?)");   //insert user inserted event post data into database
-        $stmt->bind_param("sss", $e_title, $e_content, $img);
+        $stmt->bind_param("sss", $e_title, $img, $e_content);
         $stmt->execute();
         
     }
