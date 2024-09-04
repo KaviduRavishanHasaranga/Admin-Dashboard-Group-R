@@ -54,20 +54,21 @@ include 'assets\components\footer.php';
     if (isset($_POST["eventSubmit"])){   
         $e_title = $_POST["eventTitle"];
         $e_content = $_POST["eventContent"];
+        $img = null;
 
         if (isset($_FILES['choose_img']) && $_FILES['choose_img']['error'] == 0){
-            $img = mysqli_real_escape_string($conn ,file_get_contents($_FILES['choose_img']['tmp_name']));
+           // Read the image file and escape special characters
+            $img = file_get_contents($_FILES['choose_img']['tmp_name']);
         }
-        else{
-            $img = null;
-        }
-
-        $stmt = $conn->prepare("INSERT INTO events(event_title, event_images, event_content) VALUES(?,?,?)");   //insert user inserted event post data into database
+        // Use prepared statements to prevent SQL injection
+        $stmt = $conn->prepare("INSERT INTO events(event_title, event_images, event_content) VALUES(?,?,?)");   
         $stmt->bind_param("sss", $e_title, $img, $e_content);
+        $stmt->send_long_data(1, $img); // For handling large blobs
         $stmt->execute();
+        $stmt->close();
         
     }
-    $stmt->close();
+
     $conn->close();
 
 
