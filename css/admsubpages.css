@@ -2,13 +2,13 @@
 
 /* ====================== Product Nav Bar ========================== */
 nav {
-  background-color: var(--blue);
+  /* background-color: var(--blue); */
   padding: 10px 0;
 }
 
 .navbar {
   list-style-type: none;
-  margin: 0;
+  margin: 5px;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -16,6 +16,7 @@ nav {
 
 .navbar li {
   margin: 0 15px;
+
 }
 
 .navbar li a {
@@ -24,6 +25,9 @@ nav {
   font-size: 18px;
   padding: 8px 16px;
   transition: background-color 0.3s;
+  border: 1px solid var(--blue);
+  background-color: var(--blue);
+  border-radius: 4px;
 }
 
 .navbar li a:hover {
@@ -35,7 +39,7 @@ nav {
 /* ====================== Product Add Form ========================== */
 .form-container {
   background-color: rgb(216, 216, 216);
-  padding: 30px;
+  padding: 30px 20px;
   width: 100%;
   margin: auto;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -128,7 +132,6 @@ dashboard-container {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .dashboard-header {
     text-align: center;
     margin-bottom: 20px;
@@ -175,23 +178,30 @@ dashboard-container {
 }
 
 /* Message Table */
-
-.messagetable-conatiner{
-  padding: 20px;
-  align-items: center;
-}
 table {
   border-collapse: collapse;
   width: 100%;
 }
+
 table, th, td {
   font-size: 14px;
   border: 1px solid black;
   
 }
-th, td {
+th {
+  padding: 8px;
+  text-align: center;
+}
+td {
   padding: 8px;
   text-align: left;
 }
 
+
 /* Product Table */
+.product-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  zoom: 90%;
+}

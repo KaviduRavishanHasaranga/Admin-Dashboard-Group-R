@@ -1,23 +1,28 @@
 <?php
-include 'assets/config/connection.php';
+include 'assets\config\connection.php'; // Include database connection file
 
-// Get the product ID from the URL
-$product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// Check if an ID is passed via GET and is valid
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']); // Sanitize the ID
 
-if ($product_id == 0) {
-    header("Location: product.php?error=invalid_id");
+    // Prepare the DELETE query
+    $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+    $stmt->bind_param("i", $id); // Bind the integer value
+
+    // Execute the query and handle the result
+    if ($stmt->execute()) {
+        // Redirect after successful deletion
+        header("Location: manage_product.php?message=product_deleted");
+        exit();
+    } else {
+        // Display error if something goes wrong
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close(); // Close the prepared statement
+} else {
+    // Redirect if no valid ID is provided
+    header("Location: manage_product.php?error=invalid_id");
     exit();
 }
-
-// Delete the product from the database
-$sql = "DELETE FROM products WHERE id = $product_id";
-
-if (mysqli_query($conn, $sql)) {
-    header("Location: product.php?message=product_deleted");
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
 ?>

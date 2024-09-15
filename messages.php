@@ -52,4 +52,4 @@ include 'customer_messages.php';
     </table>
 </div>
 
-<?php include 'assets\components\footer.php'; ?>
+<?php include 'assets/components/footer.php'; ?>

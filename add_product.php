@@ -1,12 +1,12 @@
 <?php
-include 'assets\components\nevigationbar.php';
-include 'assets\components\mainside.php';
+include 'assets/components/nevigationbar.php';
+include 'assets/components/mainside.php';
 ?>
 
 <div class="form-container">
     <nav>
         <ul class="navbar">
-            <li><a href="product.php">Manage Products</a></li>
+            <li><a href="manage_product.php">Manage Products</a></li>
             <li><a href="add_product.php">Add Product</a></li>
         </ul>
     </nav>
@@ -22,14 +22,14 @@ include 'assets\components\mainside.php';
 
             <label for="category">Category:</label>
             <select id="category" name="category">
-                <option value="Blue-sapphire">Blue Sapphire</option>
+                <option value="Blue Sapphire">Blue Sapphire</option>
                 <option value="Ruby">Ruby</option>
-                <option value="Yellow-sapphire">Yellow Sapphire</option>
-                <option value="Pink-sapphire">Pink Sapphire</option>
-                <option value="White-sapphire">White Sapphire</option>
+                <option value="Yellow Sapphire">Yellow Sapphire</option>
+                <option value="Pink Sapphire">Pink Sapphire</option>
+                <option value="White Sapphire">White Sapphire</option>
                 <option value="Padparadscha">Padparadscha</option>
-                <option value="Star-sapphire">Star Sapphire</option>
-                <option value="Purple-sapphire">Purple Sapphire</option>
+                <option value="Star Sapphire">Star Sapphire</option>
+                <option value="Purple Sapphire">Purple Sapphire</option>
                 <option value="Garnet">Garnet</option>
                 <option value="Tourmaline">Tourmaline</option>
                 <option value="Chrysoberyl">Chrysoberyl</option>
@@ -41,10 +41,9 @@ include 'assets\components\mainside.php';
             </select>
 
             <label for="product_image">Product Images:</label>
-            <input type="file" id="product_image" name="product_image[]" multiple>
-            <input type="file" id="product_image" name="product_image[]" multiple>
-            <input type="file" id="product_image" name="product_image[]" multiple>
-
+            <input type="file" id="product_image1" name="image1_base64">
+            <input type="file" id="product_image2" name="image2_base64">
+            <input type="file" id="product_image3" name="image3_base64">
         </section>
 
         <!-- Product Specification -->
@@ -70,7 +69,6 @@ include 'assets\components\mainside.php';
 
             <label for="certificate">Certificate:</label>
             <input type="text" id="certificate" name="certificate">
-
         </section>
 
         <!-- Price, Stock & Variants -->
@@ -92,9 +90,35 @@ include 'assets\components\mainside.php';
 
         <div class="form-actions">
             <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
+            <button type="reset">Save Draft</button>
         </div>
     </form>
 </div>
 
-<?php include 'assets\components\footer.php'; ?>
+<?php include 'assets/components/footer.php'; ?>
+
+<script>
+    document.getElementById('gemForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const form = event.target;
+
+        const formData = new FormData(form);
+        fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                if (result.trim() === "success") {
+                    alert("Product added successfully!");
+                    form.reset(); // Reset the form
+                    window.scrollTo(0, 0); // Scroll to the top
+                } else {
+                    alert("Error: " + result);
+                }
+            })
+            .catch(error => {
+                alert("An error occurred: " + error.message);
+            });
+    });
+</script>

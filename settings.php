@@ -5,7 +5,7 @@ include 'assets\components\mainside.php';
 
 <div class="dashboard-container">
         <header class="dashboard-header">
-            <h1>HAVANA Shopping Mart</h1>
+            <h1>Shop Name</h1>
             <p>Seller ID: LKJF233H1A</p>
             <a href="#">Store URL</a>
         </header>
