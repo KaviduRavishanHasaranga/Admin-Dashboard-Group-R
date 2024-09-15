@@ -28,14 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $image2_base64 = null;
     $image3_base64 = null;
 
-    if (!empty($_FILES['product_image']['tmp_name'][0])) {
-        $image1_base64 = imageToBase64($_FILES['product_image']['tmp_name'][0]);
+    // Check and convert each image file to base64
+    if (!empty($_FILES['image1_base64']['tmp_name'])) {
+        $image1_base64 = imageToBase64($_FILES['image1_base64']['tmp_name']);
     }
-    if (!empty($_FILES['product_image']['tmp_name'][1])) {
-        $image2_base64 = imageToBase64($_FILES['product_image']['tmp_name'][1]);
+    if (!empty($_FILES['image2_base64']['tmp_name'])) {
+        $image2_base64 = imageToBase64($_FILES['image2_base64']['tmp_name']);
     }
-    if (!empty($_FILES['product_image']['tmp_name'][2])) {
-        $image3_base64 = imageToBase64($_FILES['product_image']['tmp_name'][2]);
+    if (!empty($_FILES['image3_base64']['tmp_name'])) {
+        $image3_base64 = imageToBase64($_FILES['image3_base64']['tmp_name']);
     }
 
     // Insert data into the products table
@@ -43,11 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$product_name', '$category', '$image1_base64', '$image2_base64', '$image3_base64', '$carat_weight', '$clarity', '$size', '$color', '$shape_cut', '$treatment', '$certificate', '$price', '$stock_quantity', '$description', NOW(), NOW())";
 
     if (mysqli_query($conn, $sql)) {
-        echo "New product added successfully!";
-        // Redirect to manage products page or show success message
-        header("Location: product.php?message=success");
+        echo "success"; // Return success message for JavaScript
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn); // Return error message
     }
 
     // Close the database connection

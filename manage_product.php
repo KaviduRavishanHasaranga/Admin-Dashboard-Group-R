@@ -1,6 +1,7 @@
 <?php
-include 'assets\components\nevigationbar.php';
-include 'assets\components\mainside.php';
+ob_start(); // Start output buffering
+include 'assets/components/nevigationbar.php';
+include 'assets/components/mainside.php';
 include 'assets/config/connection.php';
 
 // Get the product ID from the URL
@@ -63,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             WHERE id = $product_id";
 
     if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Product updated successfully! Click Ok to continue'); window.location.href='product.php';</script>";
+        header("Location: product.php?message=product_updated");
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
@@ -76,10 +77,12 @@ function imageToBase64($image)
     return base64_encode($imageData);
 }
 
+// After headers and redirection
+ob_end_flush(); // Send the output buffer and end buffering
 ?>
 
 <div class="form-container">
-    <form id="gemForm" action="edit_product.php?id=<?php echo $product_id; ?>" method="POST" enctype="multipart/form-data">
+    <form id="gemForm" action="manage_product.php?id=<?php echo $product_id; ?>" method="POST" enctype="multipart/form-data">
         <br>
         <h1>Edit Product</h1>
 
@@ -91,23 +94,24 @@ function imageToBase64($image)
 
             <label for="category">Category:</label>
             <select id="category" name="category">
-                <option value="blue-sapphire" <?php echo $product['category'] == 'blue-sapphire' ? 'selected' : ''; ?>>Blue Sapphire</option>
-                <option value="ruby" <?php echo $product['category'] == 'ruby' ? 'selected' : ''; ?>>Ruby</option>
-                <option value="yellow-sapphire" <?php echo $product['category'] == 'yellow-sapphire' ? 'selected' : ''; ?>>Yellow Sapphire</option>
-                <option value="pink-sapphire" <?php echo $product['category'] == 'pink-sapphire' ? 'selected' : ''; ?>>Pink Sapphire</option>
-                <option value="white-sapphire" <?php echo $product['category'] == 'white-sapphire' ? 'selected' : ''; ?>>White Sapphire</option>
-                <option value="padparadscha" <?php echo $product['category'] == 'padparadscha' ? 'selected' : ''; ?>>Padparadscha</option>
-                <option value="star-sapphire" <?php echo $product['category'] == 'star-sapphire' ? 'selected' : ''; ?>>Star Sapphire</option>
-                <option value="purple-sapphire" <?php echo $product['category'] == 'purple-sapphire' ? 'selected' : ''; ?>>Purple Sapphire</option>
-                <option value="garnet" <?php echo $product['category'] == 'garnet' ? 'selected' : ''; ?>>Garnet</option>
-                <option value="tourmaline" <?php echo $product['category'] == 'tourmaline' ? 'selected' : ''; ?>>Tourmaline</option>
-                <option value="chrysoberyl" <?php echo $product['category'] == 'chrysoberyl' ? 'selected' : ''; ?>>Chrysoberyl</option>
-                <option value="aquamarine" <?php echo $product['category'] == 'aquamarine' ? 'selected' : ''; ?>>Aquamarine</option>
-                <option value="topaz" <?php echo $product['category'] == 'topaz' ? 'selected' : ''; ?>>Topaz</option>
-                <option value="spinel" <?php echo $product['category'] == 'spinel' ? 'selected' : ''; ?>>Spinel</option>
-                <option value="amethyst" <?php echo $product['category'] == 'amethyst' ? 'selected' : ''; ?>>Amethyst</option>
-                <option value="moonstone" <?php echo $product['category'] == 'moonstone' ? 'selected' : ''; ?>>Moonstone</option>
+                <option value="Blue Sapphire" <?php echo $product['category'] == 'Blue Sapphire' ? 'selected' : ''; ?>>Blue Sapphire</option>
+                <option value="Ruby" <?php echo $product['category'] == 'Ruby' ? 'selected' : ''; ?>>Ruby</option>
+                <option value="Yellow Sapphire" <?php echo $product['category'] == 'Yellow Sapphire' ? 'selected' : ''; ?>>Yellow Sapphire</option>
+                <option value="Pink Sapphire" <?php echo $product['category'] == 'Pink Sapphire' ? 'selected' : ''; ?>>Pink Sapphire</option>
+                <option value="White Sapphire" <?php echo $product['category'] == 'White Sapphire' ? 'selected' : ''; ?>>White Sapphire</option>
+                <option value="Padparadscha" <?php echo $product['category'] == 'Padparadscha' ? 'selected' : ''; ?>>Padparadscha</option>
+                <option value="Star Sapphire" <?php echo $product['category'] == 'Star Sapphire' ? 'selected' : ''; ?>>Star Sapphire</option>
+                <option value="Purple Sapphire" <?php echo $product['category'] == 'Purple Sapphire' ? 'selected' : ''; ?>>Purple Sapphire</option>
+                <option value="Garnet" <?php echo $product['category'] == 'Garnet' ? 'selected' : ''; ?>>Garnet</option>
+                <option value="Tourmaline" <?php echo $product['category'] == 'Tourmaline' ? 'selected' : ''; ?>>Tourmaline</option>
+                <option value="Chrysoberyl" <?php echo $product['category'] == 'Chrysoberyl' ? 'selected' : ''; ?>>Chrysoberyl</option>
+                <option value="Aquamarine" <?php echo $product['category'] == 'Aquamarine' ? 'selected' : ''; ?>>Aquamarine</option>
+                <option value="Topaz" <?php echo $product['category'] == 'Topaz' ? 'selected' : ''; ?>>Topaz</option>
+                <option value="Spinel" <?php echo $product['category'] == 'Spinel' ? 'selected' : ''; ?>>Spinel</option>
+                <option value="Amethyst" <?php echo $product['category'] == 'Amethyst' ? 'selected' : ''; ?>>Amethyst</option>
+                <option value="Moonstone" <?php echo $product['category'] == 'Moonstone' ? 'selected' : ''; ?>>Moonstone</option>
             </select>
+
 
             <label for="product_image">Product Images:</label>
             <input type="file" id="product_image" name="product_image[]" multiple>
@@ -159,7 +163,7 @@ function imageToBase64($image)
 
         <div class="form-actions">
             <button type="submit">Update Product</button>
-            <a href="product.php"><button type="cancel">Cancel</button></a>
+            <a href="product.php">Cancel</a>
         </div>
     </form>
 </div>

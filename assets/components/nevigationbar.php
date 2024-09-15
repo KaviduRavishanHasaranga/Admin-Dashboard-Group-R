@@ -48,7 +48,7 @@
                 </li>
 
                 <li>
-                    <a href="orders.php">
+                    <a href="admin_orders.php">
                         <span class="icon">
                             <i class="fa-solid fa-receipt"></i>
                         </span>
@@ -57,7 +57,7 @@
                 </li>
 
                 <li>
-                    <a href="orders.php">
+                    <a href="blog.php">
                         <span class="icon">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </span>
