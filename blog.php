@@ -37,10 +37,6 @@ include 'assets\config\connection.php';
 </section>
 </div>
 
-<?php
-include 'assets\components\footer.php'; 
-?>
-
 <!-- Get user input data form html form and store in gemstore_db -->
 <?php
     
@@ -73,5 +69,7 @@ include 'assets\components\footer.php';
 
     $conn->close();
 
-
+?>
+<?php
+include 'assets\components\footer.php'; 
 ?>
